@@ -14,6 +14,7 @@ flower.x = random.randint(0,500)
 flower.y = random.randint(0,500)
 
 score = 0
+gameover = False
 
 def draw():
 
@@ -21,6 +22,9 @@ def draw():
     bumblebee.draw()
     flower.draw()
     screen.draw.text("Score:" + str(score),(50,50))
+    if gameover == True:
+        screen.fill("purple")
+        screen.draw.text("Time's up! Your score is " + str(score),(50,50))
 
 def update():
     global score
@@ -40,9 +44,11 @@ def update():
         flower.x = random.randint(0,500)
         flower.y = random.randint(0,500)
         score += 10
-#def timer():
+def timer():
+    global gameover
+    gameover = True
 
-#clock.schedule(timer,10.0)
+clock.schedule(timer,10.0)
 
 
 pgzrun.go()
